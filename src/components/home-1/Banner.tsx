@@ -341,7 +341,7 @@ const Banner = () => {
                         </div>
                         <div className="flex-grow-1">
                           <h5 className="fz-20 fw-600 title inter mb-0">
-                          {currentUser?.username}
+                          {/* {currentUser?.username} */}
                           </h5>
                           <span className="d-block fw-400 inter pra fz-16">
                             Info95@mail.com
