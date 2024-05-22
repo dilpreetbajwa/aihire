@@ -1,3 +1,4 @@
+'use client';
 import aibrain from "@/../public/img/bn/aibrain.png";
 import aiman from "@/../public/img/bn/aiman.png";
 import airound from "@/../public/img/bn/airound.png";
@@ -21,7 +22,6 @@ import { usePathname } from "next/navigation";
 import { MouseEvent, useEffect, useState } from "react";
 import Select from "react-select";
 import newRequest from "@/utils/newRequest";
-import getCurrentUser from "@/utils/getCurrentUser";
 
 const Banner = () => {
   const [menuFixed, setMenuFixed] = useState(false);
@@ -77,19 +77,13 @@ const Banner = () => {
     return submenus?.find((item: any) => item?.url === path)
   }
 
-  
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-// const currentUser = null
+  const currentUser = localStorage.getItem("currentUser");
+  console.log(currentUser);
 
-  // const currentUser = {
-  //   id: 1,
-  //   username: "Anna",
-  //   isSeller: true,
-  // };
   const handleLogout = async () => {
     try {
       await newRequest.post("/auth/logout");
-      localStorage.setItem("currentUser", null);
+      localStorage.setItem("currentUser", "null");
       redirect("/");
     } catch (err) {
       console.log(err);
