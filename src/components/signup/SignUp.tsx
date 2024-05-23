@@ -5,9 +5,10 @@ import Link from "next/link";
 import React, { useState } from "react";
 import upload from "@/utils/upload";
 import newRequest from "@/utils/newRequest";
+import { useRouter } from 'next/navigation'
 
 const SignUp = () => {
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<any | null>(null);
   const [user, setUser] = useState({
     username: "",
     email: "",
@@ -19,19 +20,28 @@ const SignUp = () => {
   });
   console.log(user);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setUser((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
 
-  const handleSeller = (e) => {
+  const handlefilechange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    const selectedFiles = files as FileList;
+    setFile(selectedFiles?.[0]);
+  };
+
+  const handleSeller = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUser((prev) => {
       return { ...prev, isSeller: e.target.checked };
     });
   };
+ 
+  
 
-  const handleSubmit = async (e) => {
+  const router = useRouter()
+  const handleSubmit =  async(e: React.SyntheticEvent) => {
     e.preventDefault();
 
     const url = await upload(file);
@@ -40,7 +50,7 @@ const SignUp = () => {
         ...user,
         img: url,
       });
-      navigate("/")
+      router.push('/')
     } catch (err) {
       console.log(err);
     }
@@ -52,29 +62,29 @@ const SignUp = () => {
           <div className="col-xl-12 col-lg-12">
             <div className="signup__boxes round16 border">
               <h3 className="title mb-16">Create a new account!</h3>
-              {/* <p className="fz-16 title fw-400 inter mb-40">
-                Please enter your email address to join us
-              </p> */}
-              <form className="write__review" onSubmit={handleSubmit}>
+              
+              {/* FORM START */}
+              <form className="write__review" onSubmit={(e) => handleSubmit(e)}>
                 <div className="row g-4 ">
+
+               
                   <div className="col-lg-6">
-                  <div className="col-lg-12">
-                    <div className="frm__grp">
-                      <label
-                        htmlFor="name"
-                        className="fz-18 fw-500 inter title mb-16">
-                        Username
-                      </label>
-                      <input
-                        type="text"
-                        name="username"
-                        id="name"
-                        placeholder="Enter First Name..."
-                        onChange={handleChange}
-                       
-                      />
+                    <div className="col-lg-12">
+                        <div className="frm__grp">
+                            <label
+                              htmlFor="name"
+                              className="fz-18 fw-500 inter title mb-16">
+                              Username
+                            </label>
+                            <input
+                              type="text"
+                              name="username"
+                              id="name"
+                              placeholder="Enter First Name..."
+                              onChange={(e) => handleChange(e)}                    
+                            />
+                        </div>
                     </div>
-                  </div>
                   <div className="col-lg-12">
                     <div className="frm__grp">
                       <label
@@ -87,7 +97,7 @@ const SignUp = () => {
                         id="email"
                         name="email"
                         placeholder="Enter Your Email..."
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}  
                       
                       />
                     </div>
@@ -104,7 +114,7 @@ const SignUp = () => {
                         id="password"
                         name="password"
                         placeholder="Enter Your Password..."
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}  
                       />
                     </div>
                   </div>
@@ -118,7 +128,8 @@ const SignUp = () => {
                       <input
                         type="file"
                         id="profile_pic"
-                        onChange={(e) => setFile(e.target.files[0])}
+                        name="profile_pic"
+                        onChange={handlefilechange}
                       />
                     </div>
                   </div>
@@ -133,11 +144,14 @@ const SignUp = () => {
                         name="country"
                         type="text"
                         placeholder="Usa"
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(e)}  
                       />
                     </div>
                   </div>
                   </div>
+                    
+                    {/* SELLER  */}
+
                   <div className="col-lg-6">
                     <div className="col-lg-12">
                       <div className="frm__grp">
@@ -146,28 +160,27 @@ const SignUp = () => {
                           Activate the seller account
                         </div>
                         <label className="switch">
-                          <input type="checkbox" onChange={handleSeller} />
+                          <input type="checkbox"  onChange={(e) => handleSeller(e)}   />
                           <span className="slider round"></span>
                         </label>
                       </div>
                     </div>
                     <div className="col-lg-12">
-                    <div className="frm__grp">
-                      <label
-                        htmlFor="phone"
-                        className="fz-18 fw-500 inter title mb-16">
-                        Phone Number
-                      </label>
-                      <input
-                        type="text"
-                        name="phone"
-                        id="phone"
-                        placeholder="+1 234 567 89"
-                        onChange={handleChange}
-                       
-                      />
+                      <div className="frm__grp">
+                        <label
+                          htmlFor="phone"
+                          className="fz-18 fw-500 inter title mb-16">
+                          Phone Number
+                        </label>
+                        <input
+                          type="text"
+                          name="phone"
+                          id="phone"
+                          placeholder="+1 234 567 89"
+                          onChange={handleChange}
+                        />
+                      </div>
                     </div>
-                  </div>
                   <div className="col-lg-12">
                     <div className="frm__grp">
                       <label
@@ -179,44 +192,41 @@ const SignUp = () => {
                         placeholder="A short description of yourself"
                         name="desc"
                         id=""
-                        cols="30"
-                        rows="10"
                         onChange={handleChange}
                       ></textarea>
                     </div>
                   </div>
-
-
                   </div>
-                 
-                  
-                  <p className="fz-16 fw-400 title inter">
-                    Do you have an account?{" "}
-                    <Link href="/singin" className="base">
-                      Signin
-                    </Link>
-                  </p>
-                  <div className="col-lg-6">
-                    <div className="frm__grp">
-                      <button
-                        type="submit"
-                        className="cmn--btn basebor outline__btn">
-                        <span>Sign Up</span>
-                        <span>
-                          <i className="bi bi-arrow-up-right"></i>
-                        </span>
-                      </button>
+
+                     {/* SELLER  */}
+
+                    <p className="fz-16 fw-400 title inter">
+                      Do you have an account?{" "}
+                      <Link href="/singin" className="base">
+                        Signin
+                      </Link>
+                    </p>
+
+                    <div className="col-lg-6">
+                      <div className="frm__grp">
+                        <button
+                          type="submit"
+                          className="cmn--btn basebor outline__btn">
+                          <span>Sign Up</span>
+                          <span>
+                            <i className="bi bi-arrow-up-right"></i>
+                          </span>
+                        </button>
+                      </div>
                     </div>
-                  </div>
+
                 </div>
               </form>
+              {/* FORM END */}
+
+
             </div>
-          </div>
-          {/* <div className="col-xl-5 col-lg-6">
-            <div className="signup__thumb">
-              <Image src={signup} className="w-100" alt="img" />
-            </div>
-          </div> */}
+          </div>       
         </div>
       </div>
     </section>

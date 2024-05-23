@@ -12,16 +12,15 @@ const SignIn = () => {
   const [error, setError] = useState(null);
 
   const router = useRouter()
- 
-
-  const handleSubmit = async(e) => {
-    e.preventDefault();
+  
+  const handleSubmit = async(e: React.SyntheticEvent) => {
     try {
+      e.preventDefault();
       const res = await newRequest.post("/auth/login", { username, password });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       router.push('/')
-    } catch (err) {
-      setError(err.response.data);
+    } catch (error) {
+      
     }
   };
 
@@ -35,7 +34,7 @@ const SignIn = () => {
               <p className="fz-16 title fw-400 inter mb-40">
                 Sign in to your account and join us
               </p>
-              <form className="write__review" onSubmit={handleSubmit}>
+              <form className="write__review" onSubmit= {handleSubmit}>
                 <div className="row g-4 ">
                   <div className="col-lg-12">
                     <div className="frm__grp">

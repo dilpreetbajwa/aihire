@@ -9,19 +9,16 @@ import lineDash from "@/../public/img/bn/line-dash.png";
 import profile from "@/../public/img/bn/profile.jpg";
 import vec1 from "@/../public/img/bn/vec1.png";
 import vec2 from "@/../public/img/bn/vec2.png";
-import f1 from "@/../public/img/frelancer/f1.png";
-import f2 from "@/../public/img/frelancer/f2.png";
-import f3 from "@/../public/img/frelancer/f3.png";
 import favicon from "@/../public/img/logo/favicon.png";
 import logo from "@/../public/img/logo/canrise_logo1.jpg";
 import { menuData } from "@/data/menuData";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from 'next/navigation'
-import { usePathname } from "next/navigation";
+import { usePathname ,useRouter, redirect} from "next/navigation";
 import { MouseEvent, useEffect, useState } from "react";
 import Select from "react-select";
 import newRequest from "@/utils/newRequest";
+import { El_Messiri } from "next/font/google";
 
 const Banner = () => {
   const [menuFixed, setMenuFixed] = useState(false);
@@ -77,18 +74,21 @@ const Banner = () => {
     return submenus?.find((item: any) => item?.url === path)
   }
 
-  const currentUser = localStorage.getItem("currentUser");
-  console.log(currentUser);
-
+  
+ const local_ck = localStorage.getItem("currentUser");
+  const currentUser: any = local_ck ? JSON.parse(local_ck) : null;
+  
+ 
+const router = useRouter()
   const handleLogout = async () => {
     try {
       await newRequest.post("/auth/logout");
       localStorage.setItem("currentUser", "null");
-      redirect("/");
+      redirect('/');
     } catch (err) {
       console.log(err);
     }
-  };
+};
 
   return (
     <section className="banner__section bg__img1 ralt overhid ">
@@ -341,7 +341,8 @@ const Banner = () => {
                         </div>
                         <div className="flex-grow-1">
                           <h5 className="fz-20 fw-600 title inter mb-0">
-                          {/* {currentUser?.username} */}
+                          {currentUser?.username}
+                          
                           </h5>
                           <span className="d-block fw-400 inter pra fz-16">
                             Info95@mail.com
@@ -448,6 +449,7 @@ const Banner = () => {
                     </div>
                   </div>
                 </div>
+                
                  ): 
                 (
                   <>
