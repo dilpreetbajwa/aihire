@@ -24,6 +24,8 @@ const Banner = () => {
   const [menuFixed, setMenuFixed] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdown, setDropdown] = useState<null | number>(null);
+  const [currentUser, setcurrentUser] = useState<null | any>(null);
+  
   const [searchOpen, setSearchOpen] = useState(false);
   const path = usePathname()
   useEffect(() => {
@@ -74,9 +76,15 @@ const Banner = () => {
     return submenus?.find((item: any) => item?.url === path)
   }
 
-  
- const local_ck = localStorage.getItem("currentUser");
-  const currentUser: any = local_ck ? JSON.parse(local_ck) : null;
+  "use client";
+
+  useEffect(() => {
+    const savedValue = window.localStorage.getItem("currentUser");
+    setcurrentUser(savedValue ? JSON.parse(savedValue) : null);
+  }, []);
+
+  // const local_ck = localStorage.getItem("currentUser");
+  // const currentUser: any = local_ck ? JSON.parse(local_ck) : null;
   
  
 const router = useRouter()
