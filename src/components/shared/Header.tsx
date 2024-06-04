@@ -83,43 +83,11 @@ const Header = () => {
                 <Link href="/" className="top__logo">
                   <Image src={logo} alt="logo" />
                 </Link>
-                <Link
-                  href="/how-work"
-                  className="text-white mdnone inter fw-400">
-                  How It Works
-                </Link>
-                <Link href="/about" className="text-white mdnone inter fw-400">
-                  Why AIHire
-                </Link>
               </div>
               <div className="header__topsearch d-flex align-items-center">
-                <button
-                  type="button"
-                  id="searchBtn"
-                  onClick={() => setSearchOpen(true)}
-                  className="d-lg-none flex-shrink-0">
-                  <i className="bi bi-search"></i>
-                </button>
-                <form
-                  action="#0"
-                  className="search__form search__formtwo d-flex align-items-center">
-                  <i className="bi bi-search"></i>
-                  <input type="text" placeholder="Search" />
-                  <Select
-                    options={[
-                      { value: "Talent", label: "Talent" },
-                      { value: "Hire Me", label: "Hire Me" },
-                      { value: "Professional", label: "Professional" },
-                    ]}
-                    placeholder="Talent"
-                    components={{
-                      IndicatorSeparator: () => null,
-                    }}
-                    styles={selectStyles}
-                  />
-                </form>
-                <Link href="/project" className="cmn--btn">
-                  <span className="text-nowrap">Post a Project</span>
+             
+                <Link href="/signin" className="cmn--btn">
+                  <span className="text-nowrap">Sign In / Sign Up</span>
                 </Link>
               </div>
             </div>
@@ -137,172 +105,15 @@ const Header = () => {
                   </Link>
                 </div>
                 <ul className={`main-menu ${menuOpen && "active"}`}>
-                  {menuData.map(({ id, title, submenus, url }) => (
-                    url ? (<li key={id}>
+                  {menuData.map(({ id, title, url }) => (
+                   <li key={id}>
                       <Link href={url} className={path == url ? 'active' : ''}>{title}</Link>
-                    </li>) : (
-                      <li key={id} onClick={() => setDropdown((p) => (p == id ? null : id))}>
-                        <span className={isActiveMenu(submenus) && 'active-color'}>
-                          {title}
-                          <i className="bi bi-chevron-down"></i>
-                        </span>
-                        <ul className={`sub-menu ${dropdown === id && "d-block"}`}>
-                          {submenus?.map(({ id, title, url }) => (
-                            <li key={id}>
-                              <Link href={url} className={path == url ? 'active-color' : ''}>{title}</Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>)
-
+                    </li>
                   ))}
                 </ul>
                 <div className="menu__right__components d-flex align-items-center flex-shrink-0">
                   <div className="menu__components d-flex align-items-center">
-                    <div className="dropdown">
-                      <span
-                        className="link glose__icon d-flex align-items-center"
-                        data-bs-toggle="dropdown"
-                        data-bs-offset="0,14"
-                        aria-expanded="true">
-                        <i className="bi bi-globe"></i>
-                      </span>
-                      <div
-                        className="dropdown-menu dropdown-start"
-                        data-popper-placement="bottom-start">
-                        <ul className="list">
-                          <li>
-                            <Link
-                              href="#"
-                              className="link d-inline-block dropdown-item">
-                              <span className="d-block bborder pb-1">
-                                {" "}
-                                English{" "}
-                              </span>
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="#"
-                              className="link d-inline-block dropdown-item">
-                              <span className="d-block bborder pb-1">
-                                Spanish
-                              </span>
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="#"
-                              className="link d-inline-block dropdown-item">
-                              <span className="d-block bborder pb-1">
-                                Arabic
-                              </span>
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="#"
-                              className="link d-inline-block dropdown-item">
-                              <span className="d-block pb-1">
-                                French
-                              </span>
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div className="notification__dropdown">
-                      <Link
-                        href="/chat-us"
-                        className="link glose__icon globe__active">
-                        <i className="bi bi-chat-text"></i>
-                      </Link>
-                    </div>
-                    <div className="dropdown notification__dropdown">
-                      <Link
-                        href="#"
-                        className="link glose__icon globe__active"
-                        data-bs-toggle="dropdown"
-                        data-bs-offset="0,14"
-                        aria-expanded="true">
-                        <i className="bi bi-bell"></i>
-                      </Link>
-                      <div
-                        className="dropdown-menu dropdown-menu-end "
-                        data-popper-placement="bottom-end">
-                        <ul className="list">
-                          <li className="mb-16">
-                            <Link
-                              href="#"
-                              className="link d-flex dropdown-item">
-                              <Image
-                                src={f1}
-                                className="notification__thumb"
-                                alt="img"
-                              />
-                              <span className="notify__content">
-                                <span className="fz-16 d-block fw-600 title inter">
-                                  Jenny95
-                                </span>
-                                <span className="fz-14 message d-block fw-500 pra inter">
-                                  Message alert!
-                                </span>
-                                <span className="fz-10 fw-400 pra inter">
-                                  10 Min ago
-                                </span>
-                              </span>
-                            </Link>
-                          </li>
-                          <li className="mb-16">
-                            <Link
-                              href="#"
-                              className="link d-flex dropdown-item">
-                              <Image
-                                src={f2}
-                                className="notification__thumb"
-                                alt="img"
-                              />
-                              <span className="notify__content">
-                                <span className="fz-16 d-block fw-600 title inter">
-                                  Arle MCcoy
-                                </span>
-                                <span className="fz-14 message d-block fw-500 pra inter">
-                                  Message alert!
-                                </span>
-                                <span className="fz-10 fw-400 pra inter">
-                                  1 days ago
-                                </span>
-                              </span>
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              href="#"
-                              className="link d-flex dropdown-item">
-                              <Image
-                                src={f3}
-                                className="notification__thumb"
-                                alt="img"
-                              />
-                              <span className="notify__content">
-                                <span className="fz-16 d-block fw-600 title inter">
-                                  Courtney Jr
-                                </span>
-                                <span className="fz-14 message d-block fw-500 pra inter">
-                                  Message alert!
-                                </span>
-                                <span className="fz-10 fw-400 pra inter">
-                                  2 Month ago
-                                </span>
-                              </span>
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    {currentUser ? 
-                 (
+       
                   <div className="dropdown profie__dropdown">
                   <Link
                     href="#"
@@ -338,13 +149,6 @@ const Header = () => {
                           </span>
                         </div>
                       </div>
-                      <div className="switch text-center mt-4 bborderdash pb-24 mb-24">
-                        <Link
-                          href="/signin"
-                          className="cmn--btn outline__btn">
-                          <span>Switch to Buying</span>
-                        </Link>
-                      </div>
                       <span className="fz-12 pra d-block fw-400 inter mb-16">
                         Account
                       </span>
@@ -360,7 +164,7 @@ const Header = () => {
                             </span>
                           </Link>
                         </li>
-                        <li className="mb-16">
+                        {/* <li className="mb-16">
                           <Link
                             href="/post-request"
                             className="link d-flex align-items-center gap-2 dropdown-item">
@@ -370,7 +174,7 @@ const Header = () => {
                               Post a Request{" "}
                             </span>
                           </Link>
-                        </li>
+                        </li> */}
                         <li className="mb-16">
                           <Link
                             href="/notification"
@@ -435,24 +239,8 @@ const Header = () => {
                     </div>
                   </div>
                 </div>
-                 ): 
-                (
-                  <>
-                  <div className="dropdown notification__dropdown">
-                      <Link href="/signin" className="cmn--btn">
-                      <span className="text-nowrap">Sign In</span>
-                    </Link>
-                  </div>
-                  <div className="">
-                      <Link href="/signup" className="cmn--btn">
-                      <span className="">Join</span>
-                    </Link>
-                  </div></>
-                  
-                )
                  
                  
-                 }
                   </div>
                   <div
                     onClick={() => setMenuOpen(!menuOpen)}

@@ -1,15 +1,15 @@
 "use client";
 import App from "@/components/home-1/App";
-import Banner from "@/components/home-1/Banner";
-import Categories from "@/components/home-1/Categories";
-import CompanyLogo from "@/components/home-1/CompanyLogo";
-import Freelancer from "@/components/home-1/Freelancer";
-import GetStarted from "@/components/home-1/GetStarted";
-import HowItWork from "@/components/home-1/HowItWork";
-import Perform from "@/components/home-1/Perform";
 import Service from "@/components/home-1/Service";
 import Testimonial from "@/components/home-1/Testimonial";
-import WhyChoose from "@/components/home-1/WhyChoose";
+import About from "@/components/home-3/About";
+import Banner from "@/components/home-3/Banner";
+import Category from "@/components/home-3/Category";
+import Freelancer from "@/components/home-3/Freelancer";
+import HowItWork from "@/components/home-3/HowItWork";
+import Perform from "@/components/home-3/Perform";
+import TaskCategory from "@/components/home-3/TaskCategory";
+import React from "react";
 import Footer from "@/components/shared/Footer";
 import { useEffect } from "react";
 export default function Home() {
@@ -18,20 +18,17 @@ export default function Home() {
   }, []);
   return (
     <main>
+      
       <Banner />
       {/* <!-- Hero Section End --> */}
 
-      {/* <!-- Company Logo Here --> */}
-      <CompanyLogo />
-      {/* <!-- Company Logo End --> */}
+      {/* <!-- TaskCategory  Here --> */}
+      {/* <TaskCategory /> */}
+      {/* <!-- TaskCategory  End --> */}
 
-      {/* <!-- Choose Here --> */}
-      <WhyChoose />
-      {/* <!-- Choose End --> */}
-
-      {/* <!-- Categoris section Here --> */}
-      <Categories />
-      {/* <!-- Categoris section End --> */}
+      {/* <!-- About Here --> */}
+      <About />
+      {/* <!-- About End --> */}
 
       {/* <!-- Service section Here --> */}
       <Service />
@@ -42,20 +39,16 @@ export default function Home() {
       {/* <!-- Perfoming section End --> */}
 
       {/* <!-- Freelancing section Here --> */}
-      <Freelancer />
+      <Category />
       {/* <!-- Freelancing section End --> */}
-
+      <HowItWork />
       {/* <!-- App Here --> */}
       <App />
       {/* <!-- App End --> */}
 
       {/* <!-- Get Started Section Here --> */}
-      <GetStarted />
+      <Freelancer />
       {/* <!-- Get Started Section End --> */}
-
-      {/* <!-- timelywork section Here --> */}
-      <HowItWork />
-      {/* <!-- timelywork section End --> */}
 
       {/* <!-- testimonial two Here --> */}
       <Testimonial />

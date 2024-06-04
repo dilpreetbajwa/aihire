@@ -5,12 +5,13 @@ import lineDash3 from "@/../public/img/bn/line-dash3.png";
 import taskIcon from "@/../public/img/bn/task-icon.png";
 import Image from "next/image";
 import Link from "next/link";
+import Header from "@/components/shared/Header";
 
 const Banner = () => {
   return (
     <section className="banner__section  bg__img3 ralt overhid ">
       {/* <!-- Header Here --> */}
-
+        <Header />
       {/* <!-- Header End --> */}
 
       <div className="container">
@@ -22,44 +23,11 @@ const Banner = () => {
                 <span className="d1 text-white mb-24 fw-600  ">
                   Discover AI Freelance Collaboration
                 </span>
-                <form
-                  action="#"
-                  className="search__component mb-24 d-flex align-items-center justify-content-between  ">
-                  <input type="text" placeholder="What you're looking for?" />
-                  <button
-                    type="button"
-                    className="cmn--btn d-flex align-items-center">
-                    <span>Search</span>
-                    <span>
-                      <i className="bi bi-search fz-12"></i>
-                    </span>
-                  </button>
-                </form>
-                <div className="banner__aitag d-flex justify-content-center align-items-center  ">
-                  <span className="aitag__text fz-16 fw-400 inter text-white">
-                    Popular Searches
-                  </span>
-                  <Link
-                    href="#"
-                    className="praborder home3bg round100 fz-12 fw-400 inter text-white">
-                    Machine Learning
-                  </Link>
-                  <Link
-                    href="#"
-                    className="praborder home3bg round100 fz-12 fw-400 inter text-white">
-                    NLP Specialists
-                  </Link>
-                  <Link
-                    href="#"
-                    className="praborder home3bg round100 fz-12 fw-400 inter text-white">
-                    Data Scientists
-                  </Link>
-                  <Link
-                    href="#"
-                    className="praborder home3bg round100 fz-12 fw-400 inter text-white">
-                    AI
-                  </Link>
-                </div>
+                <h4 className="base2 mb-16 wow fadeInDown">
+                     Are you an AI professional looking for exciting freelance opportunities? You have come to the right place.
+                     <br/>
+                     Click on the links above to continue your AI journey with us.
+                  </h4>
               </div>
             </div>
           </div>

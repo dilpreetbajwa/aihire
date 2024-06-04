@@ -28,6 +28,8 @@ const Banner = () => {
   
   const [searchOpen, setSearchOpen] = useState(false);
   const path = usePathname()
+
+  // Set Scroll Fixed Menu 
   useEffect(() => {
     window.addEventListener("scroll", function () {
       if (this.window.scrollY > 100) {
@@ -68,24 +70,26 @@ const Banner = () => {
       height: "auto",
     }),
   };
+
   const handleCloseSearch = (e: MouseEvent): void => {
     e.preventDefault();
     setSearchOpen(false);
   };
+
+
+
   const isActiveMenu = (submenus: any) => {
     return submenus?.find((item: any) => item?.url === path)
   }
 
-  "use client";
+  // Fetch && Set Current User
 
   useEffect(() => {
     const savedValue = window.localStorage.getItem("currentUser");
     setcurrentUser(savedValue ? JSON.parse(savedValue) : null);
   }, []);
 
-  // const local_ck = localStorage.getItem("currentUser");
-  // const currentUser: any = local_ck ? JSON.parse(local_ck) : null;
-  
+  // LOGOUT
  
 const router = useRouter()
   const handleLogout = async () => {
@@ -388,8 +392,7 @@ const router = useRouter()
                             className="link d-flex align-items-center gap-2 dropdown-item">
                             <i className="bi bi-file-earmark-plus fz-20"></i>
                             <span className="d-block fz-16 pra fw-500 inter">
-                              {" "}
-                              Post a Request{" "}
+                              Add New Gig
                             </span>
                           </Link>
                         </li>
