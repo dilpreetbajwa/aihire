@@ -162,25 +162,12 @@ const router = useRouter()
                 </Link>
               </div>
               <ul className={`main-menu ${menuOpen && "active"}`}>
-                {menuData.map(({ id, title, submenus, url }) => (
-                  url ? (
+                {menuData.map(({ id, title, url }) => (
+                 
                     <li key={id}>
                       <Link href={url} className={path == url ? 'active' : ''}>{title}</Link>
                     </li>
-                  ) : (
-                    <li key={id} onClick={() => setDropdown((p) => (p == id ? null : id))}>
-                      <span className={isActiveMenu(submenus) && 'active-color'}>
-                        {title}
-                        <i className="bi bi-chevron-down"></i>
-                      </span>
-                      <ul className={`sub-menu ${dropdown === id && "d-block"}`}>
-                        {submenus?.map(({ id, title, url }) => (
-                          <li key={id}>
-                            <Link href={url} className={path == url ? 'active-color' : ''}>{title}</Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>)
+                
 
                 ))}
               </ul>
